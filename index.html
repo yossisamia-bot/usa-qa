@@ -57,11 +57,8 @@ DATA.forEach((ch, i) => {
     const tag = it.tag && TAGS[it.tag] ? '<span class="badge" style="background:' + TAGS[it.tag][1] + '">' + TAGS[it.tag][0] + '</span>' : '';
     c.innerHTML = '<div class="q"><span class="num">' + it.n + '</span><span class="qt">' + it.q + '</span><span class="chev">◀</span></div>' +
                   '<div class="a"><p>' + it.a + tag + '</p></div>';
-    c.querySelector('.q').onclick = () => {
-      const was = c.classList.contains('open');
-      document.querySelectorAll('.card.open').forEach(o => o.classList.remove('open'));
-      if (!was) { c.classList.add('open'); setTimeout(() => { const r = c.getBoundingClientRect(); if (r.top < 70) window.scrollBy({top: r.top - 74, behavior: 'smooth'}); }, 60); }
-    };
+    c.querySelector('.q').onclick = () => c.classList.toggle('open');
+
     main.appendChild(c);
   });
 });
